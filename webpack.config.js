@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./binaryTree/tree.js",
+  entry: "./binaryTree/index.js",
   mode: "development",
   output: {
     filename: "main.js",

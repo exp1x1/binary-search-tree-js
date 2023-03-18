@@ -1,8 +1,13 @@
-import { Node } from "./node";
-import { prettyPrint } from "./helpFunction";
+import { prettyPrint, mergSort } from "./helpFunction";
 import { alreadyExist, doNotExist } from "./error";
 
-export const buildTree = (arrr, start = 0, end = arrr.length - 1) => {
+const Node = (data = null, left = null, right = null) => ({
+  data,
+  left,
+  right,
+});
+
+const buildTree = (arrr, start = 0, end = arrr.length - 1) => {
   if (start > end) return null;
   const mid = Math.round((start + end) / 2);
 
@@ -14,9 +19,12 @@ export const buildTree = (arrr, start = 0, end = arrr.length - 1) => {
   return root;
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const Tree = (rawArr) => {
   let treeRoot;
-  const Arr = [...new Set(rawArr)];
+
+  let Arr = [...new Set(rawArr)];
+  Arr = mergSort(Arr);
 
   treeRoot = buildTree(Arr);
 
@@ -70,7 +78,6 @@ export const Tree = (rawArr) => {
 
     return root;
   }
-
 
   function deleteNodeRec(tree, value) {
     if (tree == null) return tree;
