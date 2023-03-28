@@ -104,7 +104,7 @@ export const Tree = (rawArr) => {
     treeRoot = deleteNodeRec(treeRoot, nodeValue);
   }
 
-  function depthSearchRec(node, func, queue = [treeRoot]) {
+  function breadthSearchRec(node, func, queue = [treeRoot]) {
     if (node == null) return;
 
     func(node.data);
@@ -112,11 +112,11 @@ export const Tree = (rawArr) => {
     if (node.right !== null) queue.push(node.right);
     queue.shift();
 
-    depthSearchRec(queue[0], func, queue);
+    breadthSearchRec(queue[0], func, queue);
   }
 
   function levelOrder(func) {
-    depthSearchRec(treeRoot, func);
+    breadthSearchRec(treeRoot, func);
   }
 
   function inorder(func, node = treeRoot) {
